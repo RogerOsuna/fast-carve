@@ -1,0 +1,14 @@
+{
+  "name": "De casa en casa",
+  "short_name": "De casa en casa",
+  "description": "Organiza los territorios de predicación de la congregación.",
+  "lang": "es",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f6f5",
+  "theme_color": "#1f6f4a",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

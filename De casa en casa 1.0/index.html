@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>De casa en casa</title>
+<meta name="theme-color" content="#1f6f4a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <h1>De casa en casa <small>1.0</small></h1>
+</header>
+
+<main>
+  <section id="v-territorios" class="view">
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Buscar número, nombre o dirección…" aria-label="Buscar">
+      <select id="filter" aria-label="Filtrar por estado">
+        <option value="all">Todos</option>
+        <option value="available">Disponibles</option>
+        <option value="assigned">Asignados</option>
+        <option value="overdue">Asignados +4 meses</option>
+        <option value="stale">Sin trabajar +1 año</option>
+      </select>
+      <button id="btn-new" class="primary">+ Nuevo</button>
+    </div>
+    <div id="stats" class="stats"></div>
+    <div id="tlist" class="list"></div>
+  </section>
+
+  <section id="v-mapa" class="view">
+    <div id="map"></div>
+    <div id="map-msg" class="map-msg" hidden></div>
+    <button id="btn-locate" class="fab" title="Mi ubicación" aria-label="Mi ubicación">◎</button>
+    <div id="drawbar" class="drawbar" hidden>
+      <span id="drawmsg"></span>
+      <div>
+        <button id="d-undo">Deshacer</button>
+        <button id="d-finish" class="primary">Terminar</button>
+        <button id="d-cancel">Cancelar</button>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i style="background:#2e9e5b"></i>Disponible</span>
+      <span><i style="background:#2f6fdb"></i>Asignado</span>
+      <span><i style="background:#e08a1e"></i>+4 meses</span>
+    </div>
+  </section>
+
+  <section id="v-publicadores" class="view">
+    <form id="pform" class="toolbar">
+      <input id="pname" type="text" placeholder="Nombre del publicador" required autocomplete="off">
+      <button class="primary">Añadir</button>
+    </form>
+    <div id="plist" class="list"></div>
+  </section>
+
+  <section id="v-datos" class="view">
+    <div class="card">
+      <h2>Respaldo</h2>
+      <p>Los datos se guardan en este dispositivo. Haz copias con regularidad y compártelas con el siervo de territorios.</p>
+      <div class="row">
+        <button id="b-export" class="primary">Exportar respaldo (JSON)</button>
+        <label class="btn">Importar respaldo<input id="b-import" type="file" accept="application/json" hidden></label>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Registro de asignación</h2>
+      <p>Descarga un CSV (abre en Excel/Sheets) con todas las asignaciones y devoluciones, similar al formulario S-13.</p>
+      <button id="b-csv">Exportar registro (CSV)</button>
+    </div>
+    <div class="card">
+      <h2>Otros</h2>
+      <div class="row">
+        <button id="b-demo">Cargar datos de ejemplo</button>
+        <button id="b-wipe" class="danger">Borrar todo</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<nav id="tabs">
+  <button data-view="territorios" class="on"><span>▦</span>Territorios</button>
+  <button data-view="mapa"><span>🗺</span>Mapa</button>
+  <button data-view="publicadores"><span>👥</span>Publicadores</button>
+  <button data-view="datos"><span>⚙</span>Datos</button>
+</nav>
+
+<dialog id="dlg"></dialog>
+<div id="printarea"></div>
+<div id="toast" hidden></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
